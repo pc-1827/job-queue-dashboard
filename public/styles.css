@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .app {
+    text-align: center;
+    padding-top: 60px;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar li {
+    padding: 14px 20px;
+    cursor: pointer;
+  }
+
+  .navbar li:hover {
+    background-color: #495057;
+  }
+
+  .job-details-box {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 75%;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: left;
+  }
+
+  .job-details-box h2 {
+    text-align: left;
+  }
+
+  .job-details-content {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ced4da;
+  }
+
+  .job-meta {
+    flex: 1;
+    text-align: left;
+  }
+
+  .job-meta p {
+    margin: 5px 0;
+  }
+
+  .job-data-section {
+    flex: 2;
+    margin-left: 20px;
+    text-align: left;
+  }
+
+  .job-details-navbar {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .job-details-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .job-details-navbar li {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .job-details-navbar li:hover {
+    background-color: #ced4da;
+  }
+
+  .job-data {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    overflow: auto;
+    font-family: monospace;
+  }
