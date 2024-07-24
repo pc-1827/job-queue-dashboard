@@ -5,23 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Queue Dashboard</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="app">
     <nav class="navbar">
       <ul>
-        <li data-queue="waiting" class="active">Waiting</li>
+        <li data-queue="waiting">Waiting</li>
         <li data-queue="active">Active</li>
         <li data-queue="completed">Completed</li>
         <li data-queue="failed">Failed</li>
         <li data-queue="delayed">Delayed</li>
       </ul>
     </nav>
-    <div class="job-details-box" id="job-details-box">
-      <!-- Job details will be dynamically inserted here -->
+    <div class="job-details-box">
+      <h2>Job Details</h2>
+      <div class="job-details-content">
+        <!-- Job details will be dynamically inserted here -->
+      </div>
     </div>
   </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
