@@ -1,38 +1,25 @@
-const redisConnection = require('./redisConnection');
+const fetchJobs = require('./fetchJobData');
 
-channelSubscribe();
+async function channelSubscribe(redisSubscriber, io, redisClient) {
+    const channels = ['waiting', 'active', 'failed', 'completed', 'delayed'];
 
-async function channelSubscribe() {
-    try {
-        const redisClient = await redisConnection();
+    channels.forEach(channel => {
+        redisSubscriber.subscribe(channel, async (message) => {
+            //console.log(`${channel} message:`, message);
 
-        // Subscribe to the 'waiting' channel
-        redisClient.subscribe('waiting', (message) => {
-            console.log('Waiting message:', message);
+            try {
+                const jobMap = await fetchJobs(redisClient, channel);
+                //console.log(`Fetched ${channel} jobs:`, jobMap);
+
+                // Send the job data to the client side
+                io.emit(channel, jobMap);
+            } catch (error) {
+                console.error(`Error fetching ${channel} jobs:`, error);
+            }
         });
+    });
 
-        // Subscribe to the 'active' channel
-        redisClient.subscribe('active', (message) => {
-            console.log('Active message:', message);
-        });
-
-        // Subscribe to the 'failed' channel
-        redisClient.subscribe('failed', (message) => {
-            console.log('Failed message:', message);
-        });
-
-        // Subscribe to the 'completed' channel
-        redisClient.subscribe('completed', (message) => {
-            console.log('Completed message:', message);
-        });
-
-        // Subscribe to the 'delayed' channel
-        redisClient.subscribe('delayed', (message) => {
-            console.log('Delayed message:', message);
-        });
-
-        console.log('Subscribed to channels successfully.');
-    } catch (error) {
-        console.error('Error connecting to Redis or subscribing to channel:', error);
-    }
+    console.log('Subscribed to channels successfully.');
 }
+
+module.exports = channelSubscribe;
