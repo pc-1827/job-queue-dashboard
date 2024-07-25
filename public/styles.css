@@ -17,6 +17,22 @@ body {
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.navbar button:hover {
+  background-color: #c82333;
 }
 
 .navbar ul {
@@ -32,8 +48,18 @@ body {
   cursor: pointer;
 }
 
-.navbar li:hover {
+.navbar li:hover, .navbar li.selected {
   background-color: #495057;
+  color: white;
+}
+
+.name {
+  padding-left: 15px;
+}
+
+.job-details-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .job-details-box {
@@ -78,6 +104,7 @@ body {
 
 .job-data-section {
   flex: 2;
+  margin-left: 20px;
   text-align: left;
 }
 
@@ -104,14 +131,11 @@ body {
   background-color: #ced4da;
 }
 
-.job-details-navbar li.active {
-  background-color: #ced4da;
-}
-
 .job-data {
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 4px;
   overflow: auto;
   font-family: monospace;
+  height: 200px;
 }

@@ -9,6 +9,7 @@
 <body>
   <div class="app">
     <nav class="navbar">
+      <div class="name">Job Queue Dashboard</div>
       <ul>
         <li data-queue="waiting">Waiting</li>
         <li data-queue="active">Active</li>
@@ -16,9 +17,13 @@
         <li data-queue="failed">Failed</li>
         <li data-queue="delayed">Delayed</li>
       </ul>
+      <button id="flushAll">Delete All</button>
     </nav>
     <div class="job-details-box">
-      <h2>Job Details</h2>
+      <div class="job-details-header">
+        <h2>Job Details</h2>
+        <h2 class="job-total">Total: 0</h2>
+      </div>
       <div class="job-details-content">
         <!-- Job details will be dynamically inserted here -->
       </div>

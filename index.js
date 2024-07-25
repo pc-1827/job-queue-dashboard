@@ -29,6 +29,15 @@ io.on('connection', async (socket) => {
         socket.emit('selectQueue', queueType);
     });
 
+    socket.on('flushAll', async () => {
+        await redisClient.flushAll();
+        const emptyJobs = [];
+        const channels = ['waiting', 'active', 'failed', 'completed', 'delayed'];
+        channels.forEach(channel => {
+            io.emit(channel, emptyJobs);
+        });
+    });
+
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });

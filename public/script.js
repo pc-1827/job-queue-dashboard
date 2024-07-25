@@ -2,10 +2,17 @@ const socket = io();
 
 document.querySelectorAll('.navbar li').forEach((navItem) => {
     navItem.addEventListener('click', (event) => {
+        document.querySelectorAll('.navbar li').forEach(item => item.classList.remove('selected'));
+        event.target.classList.add('selected');
+
         const queueType = event.target.getAttribute('data-queue');
         socket.emit('fetchJobs', queueType);
         socket.emit('selectQueue', queueType);
     });
+});
+
+document.querySelector('#flushAll').addEventListener('click', () => {
+    socket.emit('flushAll');
 });
 
 socket.on('waiting', (jobs) => updateJobs('Waiting', jobs));
@@ -16,10 +23,13 @@ socket.on('delayed', (jobs) => updateJobs('Delayed', jobs));
 
 function updateJobs(queueType, jobs) {
     const jobDetailsBox = document.querySelector('.job-details-box .job-details-content');
+    const jobTotal = document.querySelector('.job-total');
+    jobTotal.textContent = `Total: ${jobs.length}`;
     jobDetailsBox.innerHTML = ''; // Clear previous job details
 
     if (jobs.length === 0) {
         jobDetailsBox.innerHTML = `<p>No jobs in ${queueType} queue.</p>`;
+        jobTotal.textContent = `Total: 0`;
         return;
     }
 
