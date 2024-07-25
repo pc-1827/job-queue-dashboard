@@ -15,7 +15,7 @@ const io = socketIo(server);
 app.use(express.static('public'));
 
 io.on('connection', async (socket) => {
-    //console.log('New client connected');
+    console.log('New client connected');
 
     const redisClient = await redisConnection();
     const redisSubscriber = await redisConnection();
@@ -23,6 +23,10 @@ io.on('connection', async (socket) => {
     socket.on('fetchJobs', async (queueType) => {
         const jobMap = await fetchJobs(redisClient, queueType);
         socket.emit(queueType, jobMap);
+    });
+
+    socket.on('selectQueue', (queueType) => {
+        socket.emit('selectQueue', queueType);
     });
 
     socket.on('disconnect', () => {
