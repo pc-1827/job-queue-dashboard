@@ -4,6 +4,7 @@ document.querySelectorAll('.navbar li').forEach((navItem) => {
     navItem.addEventListener('click', (event) => {
         const queueType = event.target.getAttribute('data-queue');
         socket.emit('fetchJobs', queueType);
+        socket.emit('selectQueue', queueType);
     });
 });
 
