@@ -22,14 +22,14 @@ async function channelSubscribe(redisSubscriber, io, redisClient) {
     });
 
     io.on('connection', (socket) => {
-        console.log('New client connected');
+        //console.log('New client connected');
 
         socket.on('selectQueue', (queueType) => {
             clientSelectedQueues.set(socket.id, queueType);
         });
 
         socket.on('disconnect', () => {
-            console.log('Client disconnected');
+            //console.log('Client disconnected');
             clientSelectedQueues.delete(socket.id);
         });
     });
